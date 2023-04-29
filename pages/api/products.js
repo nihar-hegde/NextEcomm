@@ -20,4 +20,12 @@ export default async function handle(req, res) {
     });
     res.json(productDoc);
   }
+  if (method === "PUT") {
+    const { title, description, price, _id } = req.body;
+    await Product.updateOne({ _id }, { title, description, price });
+    //{title,description,price} is same as {title:title,description:description,price:price}
+    //because it is creating an object ex:{a:title} this is also valid
+    //here both object and other name is same so the above syntax works
+    res.json(true);
+  }
 }
