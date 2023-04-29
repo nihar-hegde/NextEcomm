@@ -28,4 +28,10 @@ export default async function handle(req, res) {
     //here both object and other name is same so the above syntax works
     res.json(true);
   }
+  if (method === "DELETE") {
+    if (req.query?.id) {
+      await Product.deleteOne({ _id: req.query?.id });
+      res.json(true);
+    }
+  }
 }
