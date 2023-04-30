@@ -1,10 +1,16 @@
 import multiparty from "multiparty";
+import { resolve } from "styled-jsx/css";
 export default async function handle(req, res) {
   const form = new multiparty.Form();
-  form.parse(req, (err, fields, files) => {
-    console.log(files.length);
-    res.json("ok");
+  const { fields, files } = await new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) reject(err);
+      resolve({ fields, files });
+    });
   });
+  console.log("length: ", files.file.length);
+
+  res.json("ok");
 }
 
 export const config = {
