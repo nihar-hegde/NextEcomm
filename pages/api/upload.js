@@ -24,23 +24,19 @@ export default async function handle(req, res) {
   });
   const links = [];
   for (const file of files.file) {
-    const ext = file.originalFilename.split(".").pop();
-    const newFilename = Date.now() + "." + ext;
-    console.log({ ext, file });
-    await client.send(
-      new PutObjectCommand({
-        Bucket: bucketName,
-        Key: newFilename,
-        Body: fs.readFileSync(file.path),
-        ACL: "public-read",
-        ContentType: mime.lookup(file.path),
-      })
-    );
+    const ext = file.originalFilename.split('.').pop();
+    const newFilename = Date.now() + '.' + ext;
+    await client.send(new PutObjectCommand({
+      Bucket: bucketName,
+      Key: newFilename,
+      Body: fs.readFileSync(file.path),
+      ACL: 'public-read',
+      ContentType: mime.lookup(file.path),
+    }));
     const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
     links.push(link);
   }
-
-  res.json(links);
+  return res.json({links});
 }
 
 export const config = {
