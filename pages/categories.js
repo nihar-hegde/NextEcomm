@@ -12,7 +12,7 @@ export default function Categories() {
   return (
     <Layout>
       <h1>Categories</h1>
-      <label htmlFor="">New Category name</label>
+      <label>New Category name</label>
       <form onSubmit={saveCategory} className="flex gap-1">
         <input
           className="mb-0"
