@@ -6,14 +6,18 @@ export default function Categories() {
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([]);
   useEffect(() => {
+    fetchCategories();
+  }, []);
+  function fetchCategories() {
     axios.get("/api/categories").then((result) => {
       setCategories(result.data);
     });
-  }, []);
+  }
   async function saveCategory(ev) {
     ev.preventDefault();
     await axios.post("/api/categories", { name });
     setName("");
+    fetchCategories();
   }
   return (
     <Layout>
