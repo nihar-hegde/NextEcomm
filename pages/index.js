@@ -18,4 +18,6 @@ export default function Home() {
       </div>
     </Layout>
   );
-}
+} //some thing wrong wiht edit category
+//no idea what to fix
+//will see tomorrow may be
