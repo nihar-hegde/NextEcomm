@@ -19,7 +19,7 @@ export default function Categories() {
     ev.preventDefault();
     const data = { name, parentCategory };
     if (editCategory) {
-      data._id = editCategory._id;
+      data._id = editedCategory._id;
       await axios.put("/api/categories", data);
     } else {
       await axios.post("/api/categories", data);
