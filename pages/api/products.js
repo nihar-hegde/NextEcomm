@@ -12,18 +12,22 @@ export default async function handle(req, res) {
     }
   }
   if (method === "POST") {
-    const { title, description, price, images } = req.body;
+    const { title, description, price, images, category } = req.body;
     const productDoc = await Product.create({
       title,
       description,
       price,
       images,
+      category,
     });
     res.json(productDoc);
   }
   if (method === "PUT") {
-    const { title, description, price, images, _id } = req.body;
-    await Product.updateOne({ _id }, { title, description, price, images });
+    const { title, description, price, images, category, _id } = req.body;
+    await Product.updateOne(
+      { _id },
+      { title, description, price, images, category }
+    );
     //{title,description,price} is same as {title:title,description:description,price:price}
     //because it is creating an object ex:{a:title} this is also valid
     //here both object and other name is same so the above syntax works
