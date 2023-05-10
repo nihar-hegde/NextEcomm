@@ -141,3 +141,4 @@ export default function ProductForm({
     </form>
   );
 }
+//set up properties on mobile phones like memory etc
