@@ -142,3 +142,4 @@ export default function ProductForm({
   );
 }
 //set up properties on mobile phones like memory etc
+//no code today too fat fuck desicded to procrastinate
