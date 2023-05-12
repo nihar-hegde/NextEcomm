@@ -106,9 +106,15 @@ function Categories({ swal }) {
                 <div key={property.name} className="flex gap-1">
                   <input
                     type="text"
+                    value={property.name}
+                    //you stopped here on 12/05/2023 have to start from adding on change function here
                     placeholder="Property Name:(example color)"
                   />
-                  <input type="text" placeholder="Values, comma separated" />
+                  <input
+                    type="text"
+                    value={property.values}
+                    placeholder="Values, comma separated"
+                  />
                 </div>
               ))}
           </div>
