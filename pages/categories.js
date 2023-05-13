@@ -63,6 +63,20 @@ function Categories({ swal }) {
         return [...prev, { name: "", values: "" }];
       });
     }
+    function handlePropertyNameChange(index, property, newName) {
+      setProperties((prev) => {
+        const properties = [...prev];
+        properties[index].name = newName;
+        return properties;
+      });
+    }
+    function handlePropertyValuesChange(index, property, newValues) {
+      setProperties((prev) => {
+        const properties = [...prev];
+        properties[index].values = newValues;
+        return properties;
+      });
+    }
     return (
       <Layout>
         <h1>Categories</h1>
@@ -102,18 +116,29 @@ function Categories({ swal }) {
               Add new Property
             </button>
             {properties.length > 0 &&
-              properties.map((property) => (
+              properties.map((property, index) => (
                 <div key={property.name} className="flex gap-1">
                   <input
                     type="text"
                     value={property.name}
-                    //you stopped here on 12/05/2023 have to start from adding on change function here
-                    placeholder="Property Name:(example color)"
+                    className="mb-0"
+                    onChange={(ev) =>
+                      handlePropertyNameChange(index, property, ev.target.value)
+                    }
+                    placeholder="property name (example: color)"
                   />
                   <input
                     type="text"
+                    className="mb-0"
+                    onChange={(ev) =>
+                      handlePropertyValuesChange(
+                        index,
+                        property,
+                        ev.target.value
+                      )
+                    }
                     value={property.values}
-                    placeholder="Values, comma separated"
+                    placeholder="values, comma separated"
                   />
                 </div>
               ))}
